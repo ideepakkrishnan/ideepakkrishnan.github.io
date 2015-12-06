@@ -9,6 +9,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Adding jQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+      <script>
+          $(document).ready(function () {
+              $("#rsvp").click(function () {
+                  $("#rsvp").slideUp(1000);
+                  $("#cancel-rsvp").slideDown(1000, function () {
+                      $("#ride-options").slideDown(1000);
+                  });                
+              });
+              $("#cancel-rsvp").click(function () {
+                  $("#ride-options").slideUp(1000, function () {
+                      $("#cancel-rsvp").slideUp(1000);
+                      $("#rsvp").slideDown(1000);
+                  });
+              });
+          });
+
+      </script>
     <style>
       #map {
         width: 100%;
@@ -193,20 +213,100 @@
                 </div>
             </div>
         </div>
-        <div class="container" style="padding-bottom:10px;">
+        <div id="rsvp" class="container" style="padding-bottom:10px;">
             <div class="row">
-                <div class="col-xs-12" style="border: 1px solid #0497F6; background-color:#0497F6 ">
+                <div class="col-xs-12" style="background-color:#0497F6 ">
+                    <a href="ride-options" class="open-rsvp">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <a href="#cancel-rsvp">
+                                    <table style="width: 100%">
+                                        <tr>
+                                            <td></td>
+                                            <td style="width: 50px; color:#FFFFFF; font-family: segoe-ui-sb; font-size: 22px; padding-top:8px; padding-bottom: 12px; text-align: right">
+                                                RSVP
+                                            </td>
+                                            <td style="width: 55px; padding-top:10px; padding-bottom: 10px; padding-left: 10px">
+                                                <img src="forward-white.png" width="30" height="30">
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>        
+        <div id="ride-options" class="container" style="padding-bottom:10px; display: none">
+            <div class="row">
+                <div class="col-xs-12" style="padding-bottom: 10px; border: 1px solid #8EB554; background-color:#EFF7EB">
+                    <div class="row" style="margin-top: 5px">
+                        <div class="col-xs-3" style="padding-top:5px"><img src="car-green.png " width="35" height="35"></div>
+                        <div class="col-xs-9" style="margin-left: -20px; color:#86AE17; font-family: segoe-ui-sb; padding-top:5px; font-size:20px">
+                            I want to...
+                        </div>
+                        <div class="col-xs-12">
+                            <center style="padding-bottom: 10px; border-bottom: 1px solid #999999;"></center>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="row" style="margin-top: 5px">
+                                <div class="col-xs-12" style="padding-bottom:5px"></div>
+                                <div class="col-xs-10" style="font-size:18px">
+                                    offer a ride to this event
+                                </div>
+                                <div class="col-xs-2">
+                                    <img src="forward-green.png" height="30" width="30" style="float:right">
+                                </div>
+                                <div class="col-xs-12">
+                                    <center style="padding-bottom: 10px; border-bottom: 1px solid #999999;"></center>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="row" style="margin-top: 5px">
+                                <div class="col-xs-12" style="padding-bottom:5px"></div>
+                                <div class="col-xs-10" style="font-size:18px">
+                                    request a ride to this event
+                                </div>
+                                <div class="col-xs-2">
+                                    <img src="forward-green.png" height="30" width="30" style="float:right">
+                                </div>
+                                <div class="col-xs-12">
+                                    <center style="padding-bottom: 10px; border-bottom: 1px solid #999999;"></center>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="row" style="margin-top: 5px;">
+                                <div class="col-xs-12" style="padding-bottom:5px"></div>
+                                <div class="col-xs-10" style="font-size:18px">
+                                    skip this step
+                                </div>
+                                <div class="col-xs-2">
+                                    <img src="forward-green.png" height="30" width="30" style="float:right">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="cancel-rsvp" class="container" style="padding-bottom:10px; display: none">
+            <div class="row">
+                <div class="col-xs-12" style="background-color:#d34444 ">
                     <div class="row">
                         <div class="col-xs-12">
-                            <a href="eventdetails.html">
+                            <a href="#rsvp">
                                 <table style="width: 100%">
                                     <tr>
                                         <td></td>
-                                        <td style="width: 50px; color:#FFFFFF; font-family: segoe-ui-sb; font-size: 22px; padding-top:8px; padding-bottom: 12px; text-align: right">
-                                            RSVP
+                                        <td style="width: 130px; color:#FFFFFF; font-family: segoe-ui-sb; font-size: 22px; padding-top:8px; padding-bottom: 12px; text-align: right">
+                                            Cancel RSVP
                                         </td>
                                         <td style="width: 55px; padding-top:10px; padding-bottom: 10px; padding-left: 10px">
-                                            <img src="forward-white.png" width="30" height="30">
+                                            <img src="close-white.png" width="30" height="30">
                                         </td>
                                         <td></td>
                                     </tr>
