@@ -24,9 +24,41 @@
                   $("#ride-options").slideUp(1000, function () {
                       $("#cancel-rsvp").slideUp(1000);
                       $("#rsvp").slideDown(1000);
+                      $("#request-ride-success").hide();
+                      $("#request-ride-failure").hide();
                   });
               });
+              $("#requestRide").click(function () {
+                  document.location.href = 'eventmessage.html';
+              });
+              $("#offerRide").click(function () {
+                  document.location.href = 'eventmessage.html';
+              });
+              $("#skip").click(function () {
+                  document.location.href = 'index.html?rsvp=success';
+              });
           });
+
+          // Read the URL parameter to check if is coming after ride confirmation and handle the event
+          var requestStatus = location.search.split('request=')[1] ? location.search.split('request=')[1] : 'new'
+          window.onload = function () {
+              if (requestStatus == "success") {
+                  $("#request-ride-success").slideDown(1000);
+                  $("#request-ride-failure").hide();
+                  $("#ride-options").hide();
+                  $("#rsvp").hide();
+                  $("#cancel-rsvp").show();
+              } else if (requestStatus == "cancel") {
+                  $("#ride-options").hide();
+                  $("#rsvp").hide();
+                  $("#request-ride-success").hide();
+                  $("#request-ride-failure").slideDown(1000);
+                  $("#cancel-rsvp").show();
+              } else {
+                  $("#request-ride-success").hide();
+                  $("#request-ride-failure").hide();
+              }
+          }
 
       </script>
     <style>
@@ -114,6 +146,30 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div id="request-ride-success" class="container" style="padding-bottom:20px; display: none">
+            <table style="width: 100%">
+                <tr>
+                    <td style="padding-right: 10px">
+                        <img src="confirmed.png" width="40" height="40" />
+                    </td>
+                    <td style="font-family: segoe-ui; font-size: 16px; color: #86AE17;">
+                        You have requested a pick up for this event. We will send an SMS as soon as someone responds.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="request-ride-failure" class="container" style="padding-bottom:20px; display: none">
+            <table style="width: 100%">
+                <tr>
+                    <td style="padding-right: 10px">
+                        <img src="failure.png" width="40" height="40" />
+                    </td>
+                    <td style="font-family: segoe-ui; font-size: 16px; color: #d34444;">
+                        You have cancelled your request for a pick up for this event. You can request again later.
+                    </td>
+                </tr>
+            </table>
         </div>
         <div class="container" style="padding-bottom:10px">
             <div class="row">
@@ -251,7 +307,7 @@
                             <center style="padding-bottom: 10px; border-bottom: 1px solid #777777;"></center>
                         </div>
                         <div class="col-xs-12">
-                            <div class="row" style="margin-top: 5px">
+                            <div id="offerRide" class="row" style="margin-top: 5px">
                                 <div class="col-xs-12" style="padding-bottom:5px"></div>
                                 <div class="col-xs-10" style="font-size:18px">
                                     offer a ride to this event
@@ -264,7 +320,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12">
+                        <div id="requestRide" class="col-xs-12">
                             <div class="row" style="margin-top: 5px">
                                 <div class="col-xs-12" style="padding-bottom:5px"></div>
                                 <div class="col-xs-10" style="font-size:18px">
@@ -278,7 +334,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12">
+                        <div id="skip" class="col-xs-12">
                             <div class="row" style="margin-top: 5px;">
                                 <div class="col-xs-12" style="padding-bottom:5px"></div>
                                 <div class="col-xs-10" style="font-size:18px">
