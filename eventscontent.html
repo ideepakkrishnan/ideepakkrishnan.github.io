@@ -22,10 +22,17 @@
               });
               $("#cancel-rsvp").click(function () {
                   $("#ride-options").slideUp(1000, function () {
+                      $("#rideReminder").hide();
                       $("#cancel-rsvp").slideUp(1000);
                       $("#rsvp").slideDown(1000);
                       $("#request-ride-success").hide();
                       $("#request-ride-failure").hide();
+                  });
+              });
+              $("#btnCancelRide").click(function () {
+                  $("#rideReminder").slideUp(1000, function () {
+                      $("#ride-options").slideDown(1000);
+                      $("#request-ride-failure").slideDown(1000);
                   });
               });
               $("#requestRide").click(function () {
@@ -47,16 +54,29 @@
                   $("#request-ride-failure").hide();
                   $("#ride-options").hide();
                   $("#rsvp").hide();
+                  $("#rideReminder").hide();
                   $("#cancel-rsvp").show();
               } else if (requestStatus == "cancel") {
                   $("#ride-options").hide();
                   $("#rsvp").hide();
                   $("#request-ride-success").hide();
+                  $("#rideReminder").hide();
                   $("#request-ride-failure").slideDown(1000);
+                  $("#cancel-rsvp").show();
+              } else if (requestStatus == "review") {
+                  $("#rideReminder").slideDown(1000);
+                  $("#request-ride-success").hide();
+                  $("#request-ride-failure").hide();
+                  $("#ride-options").hide();
+                  $("#rsvp").hide();
                   $("#cancel-rsvp").show();
               } else {
                   $("#request-ride-success").hide();
                   $("#request-ride-failure").hide();
+                  $("#rideReminder").hide();
+                  $("#cancel-rsvp").hide();
+                  $("#ride-options").hide();
+                  $("#rsvp").show();
               }
           }
 
@@ -171,6 +191,45 @@
                 </tr>
             </table>
         </div>
+        <div id="rideReminder" class="container" style="padding-bottom:10px">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-12" style="border: 1px solid #86AE17; background-color:#EFF7EB ">
+                            <div class="row" style="padding-bottom:10px; margin-top: 5px">
+                                <div class="col-xs-4" style="padding-top:5px"><img src="car-green.png " width="40" height="40"></div>
+                                <div class="col-xs-8" style="margin-left: -60px; margin-top: 5px">
+                                    <p style="color:#86AE17; font-size:18px; font-family: segoe-ui-sb">Remember!</p>
+                                    <p style="font-family: segoe-ui; font-size: 14px; margin-top: -15px;">You have a ride for this event</p>
+                                </div>
+                                <div class="col-xs-12">
+                                    <center style="padding-bottom: 5px; border-bottom: 1px solid #777777;"></center>
+                                </div>
+                            </div>
+                            <div class="row" style="font-family: segoe-ui">
+                                <div class="col-xs-12">Annette is picking you up on</div>
+                                <div class="col-xs-4" style="font-family: segoe-ui-sb; font-size:35px">26<sup>th</sup></div>
+                                <div class="col-xs-8 " style="margin-left:-35px; margin-top: 5px;">
+                                    <div class="row">
+                                        <div class="col-xs-12">November 2015</div>
+                                        <div class="col-xs-12">Thursday, at 5:00 PM</div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    for this event from <font style="font-family: segoe-ui-sb">44 Parker Hill Ave, Boston</font>
+                                </div>
+                                <div class="col-xs-12" style="margin-top: 10px">
+                                    <button id="btnCancelRide" type="button" style="margin-right:-5px; margin-bottom:10px; background-color:#86AE17;
+								            border-color:#86AE17; float:right;" class="btn btn-success">
+                                        Cancel Ride
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container" style="padding-bottom:10px">
             <div class="row">
                 <div class="col-xs-12">
@@ -280,7 +339,7 @@
                                         <tr>
                                             <td></td>
                                             <td style="width: 50px; color:#FFFFFF; font-family: segoe-ui-sb; font-size: 22px; padding-top:8px; padding-bottom: 12px; text-align: right">
-                                                RSVP
+                                                rsvp
                                             </td>
                                             <td style="width: 55px; padding-top:10px; padding-bottom: 10px; padding-left: 10px">
                                                 <img src="forward-white.png" width="30" height="30">
@@ -309,7 +368,7 @@
                         <div class="col-xs-12">
                             <div id="offerRide" class="row" style="margin-top: 5px">
                                 <div class="col-xs-12" style="padding-bottom:5px"></div>
-                                <div class="col-xs-10" style="font-size:18px">
+                                <div class="col-xs-10" style="font-size:16px; font-family: segoe-ui">
                                     offer a ride to this event
                                 </div>
                                 <div class="col-xs-2">
@@ -323,7 +382,7 @@
                         <div id="requestRide" class="col-xs-12">
                             <div class="row" style="margin-top: 5px">
                                 <div class="col-xs-12" style="padding-bottom:5px"></div>
-                                <div class="col-xs-10" style="font-size:18px">
+                                <div class="col-xs-10" style="font-size:16px; font-family: segoe-ui">
                                     request a ride to this event
                                 </div>
                                 <div class="col-xs-2">
@@ -337,7 +396,7 @@
                         <div id="skip" class="col-xs-12">
                             <div class="row" style="margin-top: 5px;">
                                 <div class="col-xs-12" style="padding-bottom:5px"></div>
-                                <div class="col-xs-10" style="font-size:18px">
+                                <div class="col-xs-10" style="font-size:16px; font-family: segoe-ui">
                                     skip this step
                                 </div>
                                 <div class="col-xs-2">
@@ -359,7 +418,7 @@
                                     <tr>
                                         <td></td>
                                         <td style="width: 130px; color:#FFFFFF; font-family: segoe-ui-sb; font-size: 22px; padding-top:8px; padding-bottom: 12px; text-align: right">
-                                            Cancel RSVP
+                                            cancel rsvp
                                         </td>
                                         <td style="width: 55px; padding-top:10px; padding-bottom: 10px; padding-left: 10px">
                                             <img src="close-white.png" width="30" height="30">
