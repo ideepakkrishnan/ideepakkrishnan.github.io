@@ -38,6 +38,18 @@
     </style>
 
     <script>
+                
+        // Read the URL parameter to check if is coming after ride confirmation and handle the event
+        var requestStatus = location.search.split('request=')[1] ? location.search.split('request=')[1] : 'new'
+        window.onload = function () {
+            if (requestStatus == "rideOffered") {
+                $("#rideReqReminder").hide();
+                $("#rideOfferReminder").slideDown(1000);
+            } else {
+                $("#rideReqReminder").slideDown(1000);
+            }
+        }
+
         $(document).click(function (event) {
             if (!$(event.target).closest('#mainSubMenu').length) {
                 if ($('#mainSubMenu').is(":visible")) {
@@ -45,6 +57,7 @@
                 }
             }
         })
+
     </script>
 </head>
 
@@ -147,7 +160,7 @@
                 </div>
             </div>
         </div>
-        <div class="container" style="padding-bottom:10px">
+        <div id="rideReqReminder" class="container" style="padding-bottom:10px">
             <div class="row">
                 <div class="col-xs-12">
                     <div class="row">
@@ -179,6 +192,44 @@
 								            border-color:#86AE17; float:right;" class="btn btn-success" onclick="document.location.href = 'eventscontent.html?request=review';">
                                         See more...
                                     </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="rideOfferReminder" class="container" style="padding-bottom:10px; display: none;">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-12" style="border: 1px solid #86AE17; background-color:#EFF7EB ">
+                            <div class="row" style="padding-bottom:10px; margin-top: 5px">
+                                <div class="col-xs-4" style="padding-top:5px"><img src="car-green.png " width="40" height="40"></div>
+                                <div class="col-xs-8" style="margin-left: -60px; margin-top: 5px">
+                                    <p style="color:#86AE17; font-size:18px; font-family: segoe-ui-sb">Remember!</p>
+                                    <p style="font-family: segoe-ui; font-size: 14px; margin-top: -15px;">You have a ride coming up...</p>
+                                </div>
+                                <div class="col-xs-12">
+                                    <center style="padding-bottom: 5px; border-bottom: 1px solid #777777;"></center>
+                                </div>
+                            </div>
+                            <div class="row" style="font-family: segoe-ui">
+                                <div class="col-xs-12">You are picking up Annette and two others on</div>
+                                <div class="col-xs-4" style="font-family: segoe-ui-sb; font-size:35px">25<sup>th</sup></div>
+                                <div class="col-xs-8 " style="margin-left:-35px; margin-top: 5px;">
+                                    <div class="row">
+                                        <div class="col-xs-12">November 2015</div>
+                                        <div class="col-xs-12">Thursday, at 9:00 AM</div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12">
+                                    for <font style="font-family: segoe-ui-sb">Annual Community Ball</font>
+                                </div>
+                                <div class="col-xs-12" style="margin-top: 10px">
+                                    <button id="btnOfferSeeMore" type="button" style="margin-right:-5px; margin-bottom:10px; background-color:#86AE17;
+								            border-color:#86AE17; float:right;" class="btn btn-success" 
+                                            onclick="document.location.href = 'ride-notify.html';">See more...</button>
                                 </div>
                             </div>
                         </div>
