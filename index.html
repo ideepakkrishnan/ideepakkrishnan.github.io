@@ -12,6 +12,9 @@
 
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 
+    <!-- Adding jQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
     <style type="text/css">
         @font-face {
             font-family: segoe-ui;
@@ -33,6 +36,16 @@
             src: url("seguisb.ttf"); /* TTF file for CSS3 browsers */
         }
     </style>
+
+    <script>
+        $(document).click(function (event) {
+            if (!$(event.target).closest('#mainSubMenu').length) {
+                if ($('#mainSubMenu').is(":visible")) {
+                    $('#mainSubMenu').hide();
+                }
+            }
+        })
+    </script>
 </head>
 
 <body style="font-family: segoe-ui; color:#777777">
@@ -40,18 +53,59 @@
         <nav class="navbar navbar-default navbar-fixed-top" style="background-color:#86AE17;">
             <div class="container">
                 <div class="navbar-header" style="float:none; margin-top: 10px; margin-bottom: 10px">
-                    <a href="#" class="navbar-brand" style="float:right; padding: 7px 15px 0px 0px">
+                    <a href="#" class="navbar-brand" style="float:right; padding: 7px 15px 0px 0px" onclick="$('#mainSubMenu').slideDown(500);">
                         <i class="fa fa-bars" style="color: white; font-size: 28px;"></i>
                     </a>
                     <a href="settings.html" style="float:right; padding: 0px 15px 0px 0px">
                         <img src="martha.png" width="50" height="50">
                     </a>
-                    <div class="container">
+                    <div id="btnSubMenu" class="container">
                         <a style=" font-family: segoe-ui; color:white; font-size:28px;" href="#">Home</a>
                     </div>
                 </div>
+                <div id="mainSubMenu" style="width: 100%; background-color:#86AE17; display: none; padding-bottom: 20px;">
+                    <div style="margin-top: 25px; padding-bottom: 20px; color: #eff7eb; font-size: 16px; font-family: segoe-ui-sb">
+                        What would you like to do?
+                    </div>
+                    <div style="margin-left: 15px">
+                        <a href="events.html" style="text-decoration: none; color: #FFFFFF; font-size: 18px;">
+                            <table style="width: 100%">
+                                <tr>
+                                    <td>see all events</td>
+                                    <td style="text-align: right; padding-right: 15px"><img src="forward-white.png" width="15" height="15"></td>
+                                </tr>
+                            </table>                            
+                        </a>
+                    </div>
+                    <div class="col-xs-12" style="padding-bottom: 10px;">
+                        <center style="padding-bottom: 10px; border-bottom: 1px solid #eff7eb;"></center>
+                    </div>
+                    <div style="margin-left: 15px">
+                        <a href="settings.html" style="text-decoration: none; color: #FFFFFF; font-size: 18px;">
+                            <table style="width: 100%">
+                                <tr>
+                                    <td>change settings</td>
+                                    <td style="text-align: right; padding-right: 15px"><img src="forward-white.png" width="15" height="15"></td>
+                                </tr>
+                            </table>
+                        </a>
+                    </div>
+                    <div class="col-xs-12" style="padding-bottom: 10px">
+                        <center style="padding-bottom: 10px; border-bottom: 1px solid #eff7eb;"></center>
+                    </div>
+                    <div style="margin-left: 15px">
+                        <a href="login.html" style="text-decoration: none; color: #FFFFFF; font-size: 18px;">
+                            <table style="width: 100%">
+                                <tr>
+                                    <td>logout</td>
+                                    <td style="text-align: right; padding-right: 15px"><img src="forward-white.png" width="15" height="15"></td>
+                                </tr>
+                            </table>                            
+                        </a>
+                    </div>
+                </div>
             </div>
-        </nav>
+        </nav>        
         <div class="jumbotron container" style="margin-top:50px; margin-bottom:-22px; background-color: white">
             <div class="row">
                 <div class="col-xs-12">
@@ -155,13 +209,13 @@
                             </div>
                         </div>
                     </a>
-                </div>                
+                </div>
             </div>
         </div>
         <div class="container" style="padding-bottom:10px">
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="row">                        
+                    <div class="row">
                         <div class="col-xs-12" style="border: 1px solid #999999; background-color:#ffffff">
                             <div class="row" style="padding-bottom:10px; margin-top: 5px">
                                 <table>
@@ -174,7 +228,7 @@
                                                 <p style="color:#86AE17; font-size:18px; font-family: segoe-ui-sb">Upcoming Events</p>
                                                 <p style="font-family: segoe-ui; font-size: 14px; margin-top: -13px;">Here's what you can do this week...</p>
                                             </div>
-                                        </td>                                        
+                                        </td>
                                     </tr>
                                 </table>
                                 <div class="col-xs-12">
